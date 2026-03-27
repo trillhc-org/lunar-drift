@@ -1,0 +1,858 @@
+/* ============================================
+   Lunar Drift — Fear Edition v2
+   ============================================ */
+
+:root {
+  --bg: #08080f;
+  --bg-card: #0e0e18;
+  --bg-danger: #1a0a0a;
+  --bg-critical: #1f0a0a;
+  --text: #e0e0e8;
+  --text-dim: #6a6a7a;
+  --approaching: #00d4aa;
+  --receding: #ff6b6b;
+  --danger: #ff6b6b;
+  --critical: #ff4444;
+  --warning: #ffaa00;
+  --accent: #7c8aff;
+  --glow: rgba(124, 138, 255, 0.15);
+  --glow-red: rgba(255, 107, 107, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+main {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+
+#drift-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.drift-label {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.drift-counter {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(4rem, 15vw, 10rem);
+  font-weight: 700;
+  color: var(--receding);
+  text-shadow: 0 0 80px var(--glow-red);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.drift-unit {
+  font-size: 0.4em;
+  color: var(--text-dim);
+  margin-left: 0.1em;
+}
+
+.drift-sub {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.drift-sub em {
+  color: var(--receding);
+  font-style: normal;
+  font-weight: 500;
+}
+
+.drift-rate {
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+  color: var(--text-dim);
+  font-size: 1.5rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-10px); }
+  60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* ============================================
+   Sections
+   ============================================ */
+
+section {
+  padding: 5rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Compound Section
+   ============================================ */
+
+#compound {
+  padding: 6rem 2rem;
+}
+
+.compound-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.compound-item {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.compound-item.highlight {
+  border-color: var(--danger);
+  background: linear-gradient(135deg, var(--bg-danger) 0%, var(--bg-card) 100%);
+}
+
+.compound-number {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.compound-item.highlight .compound-number {
+  color: var(--danger);
+}
+
+.compound-label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+.compound-note {
+  font-size: 0.75rem;
+  color: var(--danger);
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.compound-context {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   Distance Section
+   ============================================ */
+
+#distance {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.status {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.status.approaching { color: var(--approaching); }
+.status.receding { color: var(--receding); }
+
+.counter {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.rate {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: var(--text-dim);
+}
+
+/* ============================================
+   Consequences (Full Width Cards)
+   ============================================ */
+
+#consequences {
+  max-width: 100%;
+  padding: 6rem 0;
+}
+
+#consequences h2 {
+  color: var(--receding);
+  margin-bottom: 3rem;
+  padding: 0 2rem;
+}
+
+.consequence-full {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 0;
+  min-height: 500px;
+}
+
+.consequence-full.reverse {
+  flex-direction: row-reverse;
+}
+
+.consequence-image {
+  flex: 1;
+  min-width: 40%;
+  background: var(--bg-card);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.consequence-image::after {
+  content: '[ image placeholder ]';
+  opacity: 0.3;
+}
+
+.consequence-content {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-card);
+}
+
+.consequence-full.critical .consequence-content {
+  background: linear-gradient(135deg, var(--bg-critical) 0%, var(--bg-card) 100%);
+}
+
+.consequence-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.consequence-content h3 {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.consequence-full.critical h3 {
+  color: var(--critical);
+}
+
+.consequence-content p {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.consequence-content strong {
+  color: var(--text);
+}
+
+.consequence-kicker {
+  color: var(--receding) !important;
+  font-weight: 500;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ============================================
+   Already Happening
+   ============================================ */
+
+#already {
+  padding: 6rem 2rem;
+}
+
+.already-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.already-item {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.already-item.warning {
+  border-color: var(--warning);
+  background: linear-gradient(135deg, rgba(255,170,0,0.1) 0%, var(--bg-card) 100%);
+}
+
+.already-number {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.already-item.warning .already-number {
+  color: var(--warning);
+}
+
+.already-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+/* ============================================
+   Flying Blind
+   ============================================ */
+
+#blind {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.blind-image {
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 0 auto 3rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blind-image::after {
+  content: '[ observatory image ]';
+  color: var(--text-dim);
+  opacity: 0.3;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.blind-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blind-content p {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.blind-content strong {
+  color: var(--text);
+}
+
+.blind-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--danger);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.blind-stat-number {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--danger);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.blind-stat-context {
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.blind-kicker {
+  color: var(--receding);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   Timeline
+   ============================================ */
+
+#timeline {
+  padding: 6rem 2rem;
+}
+
+.timeline-image {
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  margin: 0 auto 3rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-image::after {
+  content: '[ ancient earth image ]';
+  color: var(--text-dim);
+  opacity: 0.3;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 40px;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    var(--text-dim) 0%, 
+    var(--accent) 35%,
+    var(--danger) 60%,
+    var(--critical) 100%
+  );
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -40px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--text-dim);
+  top: 4px;
+}
+
+.timeline-item.past .timeline-marker {
+  border-color: var(--text-dim);
+  background: var(--text-dim);
+}
+
+.timeline-item.now .timeline-marker {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+.timeline-item.now .timeline-marker.pulse {
+  animation: marker-pulse 2s infinite;
+}
+
+@keyframes marker-pulse {
+  0%, 100% { box-shadow: 0 0 20px var(--accent); }
+  50% { box-shadow: 0 0 40px var(--accent), 0 0 60px var(--accent); }
+}
+
+.timeline-item.future .timeline-marker {
+  border-color: var(--danger);
+  background: var(--bg);
+}
+
+.timeline-item.future.critical .timeline-marker {
+  border-color: var(--critical);
+  background: var(--critical);
+  box-shadow: 0 0 15px rgba(255,68,68,0.5);
+}
+
+.timeline-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-item.future .timeline-date {
+  color: var(--danger);
+}
+
+.timeline-item.future.critical .timeline-date {
+  color: var(--critical);
+}
+
+.timeline-content p {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.timeline-content strong {
+  color: var(--text);
+}
+
+/* ============================================
+   Chart
+   ============================================ */
+
+#drift-chart {
+  padding: 4rem 2rem;
+}
+
+.chart-wrap {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+#chart {
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  background: var(--bg-card);
+  border: 1px solid var(--text-dim);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   Persistent Counter
+   ============================================ */
+
+#persistent-counter {
+  padding: 4rem 2rem;
+}
+
+.persistent-box {
+  background: linear-gradient(135deg, var(--bg-danger) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--danger);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 60px rgba(255, 107, 107, 0.1);
+}
+
+.persistent-label {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.persistent-value {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--receding);
+  margin-bottom: 1rem;
+}
+
+.nm-unit {
+  font-size: 0.5em;
+  color: var(--text-dim);
+}
+
+.persistent-note {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+#atoms-counter {
+  color: var(--text);
+  font-family: 'Space Mono', monospace;
+}
+
+/* ============================================
+   CTA
+   ============================================ */
+
+#cta {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.cta-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+  background: var(--bg-card);
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-image::after {
+  content: '🌙';
+  font-size: 4rem;
+  opacity: 0.3;
+}
+
+#cta h2 {
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.cta-text {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.defunded {
+  color: var(--critical);
+  font-weight: 600;
+}
+
+.cta-final {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: var(--text);
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
+/* ============================================
+   Facts
+   ============================================ */
+
+#facts {
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fact-text {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-dim);
+  max-width: 600px;
+  font-style: italic;
+  transition: opacity 0.5s ease;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer {
+  text-align: center;
+  padding: 3rem 2rem 4rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+footer p {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.footer-note {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+#share-btn {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--danger);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#share-btn:hover {
+  background: var(--danger);
+  color: var(--bg);
+  border-color: var(--danger);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .consequence-full {
+    flex-direction: column !important;
+    min-height: auto;
+  }
+  
+  .consequence-image {
+    min-height: 200px;
+    min-width: 100%;
+  }
+  
+  .consequence-content {
+    padding: 2rem;
+  }
+  
+  .timeline-container {
+    padding-left: 30px;
+  }
+  
+  .timeline-marker {
+    left: -30px;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .blind-image,
+  .timeline-image {
+    height: 200px;
+  }
+}
