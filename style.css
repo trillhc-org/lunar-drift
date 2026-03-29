@@ -307,10 +307,7 @@ h2 {
   letter-spacing: 0.1em;
 }
 
-.consequence-image::after {
-  content: '[ image placeholder ]';
-  opacity: 0.3;
-}
+/* Placeholder text hidden — real images in use */
 
 .consequence-content {
   flex: 1;
@@ -428,14 +425,7 @@ h2 {
   justify-content: center;
 }
 
-.blind-image::after {
-  content: '[ observatory image ]';
-  color: var(--text-dim);
-  opacity: 0.3;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+/* Placeholder text hidden — real image in use */
 
 .blind-content {
   max-width: 700px;
@@ -503,14 +493,7 @@ h2 {
   justify-content: center;
 }
 
-.timeline-image::after {
-  content: '[ ancient earth image ]';
-  color: var(--text-dim);
-  opacity: 0.3;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
+/* Placeholder text hidden — real image in use */
 
 .timeline-container {
   position: relative;
@@ -716,11 +699,7 @@ h2 {
   justify-content: center;
 }
 
-.cta-image::after {
-  content: '🌙';
-  font-size: 4rem;
-  opacity: 0.3;
-}
+/* Placeholder emoji hidden — real image in use */
 
 #cta h2 {
   color: var(--text);
@@ -821,6 +800,42 @@ footer a:hover {
 /* ============================================
    Responsive
    ============================================ */
+
+/* ============================================
+   Section Images
+   ============================================ */
+
+#hero-image {
+  background-image: url('images/hero-moon.jpg');
+}
+
+#img-coral {
+  background-image: url('images/coral.jpg');
+}
+
+#img-gps {
+  background-image: url('images/gps-satellite.jpg');
+}
+
+#img-mars {
+  background-image: url('images/mars-comparison.jpg');
+}
+
+#img-threshold {
+  background-image: url('images/axis-threshold.jpg');
+}
+
+#img-observatory {
+  background-image: url('images/observatory.jpg');
+}
+
+#img-ancient {
+  background-image: url('images/ancient-moon.jpg');
+}
+
+#img-hand {
+  background-image: url('images/hand-reaching.jpg');
+}
 
 @media (max-width: 768px) {
   section {
