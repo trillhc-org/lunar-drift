@@ -20,33 +20,45 @@ A fear-inducing, climate-change-style awareness site about lunar recession. The 
 ## Current Features
 
 - **Hero nanometer counter** — Real-time drift since page load
-- **Compound math section** — 3.8 cm → 38 m → 38 km → 38,000 km
-- **Live distance display** — Current Earth-Moon distance, approaching/receding
+- **Compound math section** — 3.8 cm → 38 m → 38 km → 38,000 km (each stat shareable)
+- **Lifetime calculator** — Enter birth year → personalized drift distance + share result
+- **Live distance display** — Current Earth-Moon distance with "Right Now" heading, approaching/receding indicator
 - **"What We're Losing" sections:**
-  - Tidal ecosystem collapse (coral spawning)
+  - Tidal ecosystem collapse (coral spawning) + PNAS expert quote
   - Infrastructure failing (leap seconds, GPS)
-  - Mars comparison (axis chaos)
+  - Mars comparison (axis chaos) + Laskar et al. Nature quote
   - Unknown threshold (tipping point)
-- **"Already Happening" stats** — 27 leap seconds, 2035 abolition, 55 years data
-- **"Flying Blind" section** — Research funding gap
-- **Timeline** — 4.5B years ago to +2B years future
+- **"Already Happening" stats** — 27 leap seconds, 2035 abolition, 55 years data (each stat shareable)
+- **"Flying Blind" section** — Research funding gap + Dr. Tom Murphy quote + authority badges (NASA JPL, ILRS, etc.)
+- **Timeline** — 4.5B years ago to +2B years future, with historical anchors (Pyramids, dinosaurs)
 - **60-day distance chart** — Perigee/apogee visualization
-- **Persistent counter** — Atoms of silicon gone forever
-- **CTA** — "The Moon Won't Wait"
-- **Rotating scary facts**
-- **Share button**
+- **"What You Can Do" section** — Three action cards: fund observatories, spread awareness, demand science funding
+- **CTA with email signup** — "Join the Watch 🌙" perigee notification hook
+- **"Did You Know?" rotating facts**
+- **Share button** + per-stat share buttons throughout
+- **OG/Twitter card meta** — Social shares show hero image preview
+- **Generated images** — 8 AI-generated images across all sections (hero, coral, GPS, Mars, threshold, observatory, ancient earth, hand reaching)
 
 ---
 
 ## TODO
 
+### Completed ✅
+
+- [x] Add generated images to all placeholder slots (8 AI-generated images)
+- [x] Lifetime calculator — "Enter birth year, see how far Moon moved"
+- [x] Historical anchors — Pyramids (17 cm closer), dinosaurs (2.5 km closer)
+- [x] Tweetable facts — Individual share buttons per stat card
+- [x] Newsletter signup — "Join the Watch" perigee notification (localStorage, needs backend)
+- [x] Expert quotes from astronomers (Laskar, Murphy, PNAS)
+- [x] "What you can do" section (3 action cards)
+- [x] OG/Twitter card meta for social sharing
+
 ### High Priority
 
-- [ ] Add generated images to all placeholder slots
-- [ ] Lifetime calculator — "Enter birth year, see how far Moon moved"
-- [ ] Historical anchors — "When pyramids built, Moon was X closer"
-- [ ] Screenshot-optimized stats — Design for Twitter/TikTok screenshots
 - [ ] "Why isn't anyone talking about this?" section (engagement bait)
+- [ ] Screenshot-optimized stats — Design for Twitter/TikTok screenshots
+- [ ] Backend for email collection (Netlify Forms or similar)
 
 ### Visual Enhancements
 
@@ -67,23 +79,20 @@ A fear-inducing, climate-change-style awareness site about lunar recession. The 
 ### Viral/Share Mechanics
 
 - [ ] Personalized OG image — "Moon was X km away when [name] shared"
-- [ ] Tweetable facts — Individual share buttons per fact
 - [ ] "I watched the Moon leave" badge after 60 seconds
-- [ ] Newsletter signup — "Get notified at next perigee"
+- [ ] Visitor counter — "X people have watched the Moon leave"
 
 ### Content Additions
 
 - [ ] Map of 5 active LLR stations
 - [ ] Budget comparison — "We spend $X on Y. Lunar research gets $125k"
-- [ ] Expert quotes from astronomers
-- [ ] "What you can do" section
 - [ ] FAQ for skeptics — "Isn't this natural?" "Yes. So is an asteroid."
+- [ ] More scientific citations (see RESEARCH.md)
 
 ### Emotional Hooks
 
 - [ ] Generational framing — "Your great-great-grandchildren..."
 - [ ] Pet/child angle — "A dog born today..."
-- [ ] More historical anchors — Pyramids, dinosaurs, etc.
 
 ### Technical Polish
 
