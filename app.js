@@ -39,6 +39,7 @@
     initRevealAnimations();
     initShareButton();
     initLifetimeCalc();
+    initActionShare();
 
     updateMoonData();
     generateChartData();
@@ -490,6 +491,29 @@
         try {
           await navigator.share({ text, url });
         } catch (e) {}
+      } else {
+        await navigator.clipboard.writeText(text + ' ' + url);
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 2000);
+      }
+    });
+  }
+
+  // ============================================
+  // Action Section Share
+  // ============================================
+
+  function initActionShare() {
+    const btn = document.querySelector('.action-share-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', async () => {
+      const text = `The Moon is leaving Earth at 3.8 cm per year. Most people have never heard about it. This site made me think:`;
+      const url = window.location.href;
+
+      if (navigator.share) {
+        try { await navigator.share({ text, url }); } catch(e) {}
       } else {
         await navigator.clipboard.writeText(text + ' ' + url);
         const orig = btn.textContent;
