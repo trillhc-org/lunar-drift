@@ -40,6 +40,7 @@
     initShareButton();
     initLifetimeCalc();
     initActionShare();
+    initSignup();
 
     updateMoonData();
     generateChartData();
@@ -496,6 +497,44 @@
         const orig = btn.textContent;
         btn.textContent = 'Copied!';
         setTimeout(() => btn.textContent = orig, 2000);
+      }
+    });
+  }
+
+  // ============================================
+  // Email Signup
+  // ============================================
+
+  function initSignup() {
+    const form = document.getElementById('signup-form');
+    const emailInput = document.getElementById('signup-email');
+    const btn = document.getElementById('signup-btn');
+    const status = document.getElementById('signup-status');
+    if (!form || !emailInput || !btn) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      // Store in localStorage (no backend yet)
+      const signups = JSON.parse(localStorage.getItem('lunar-drift-signups') || '[]');
+      if (signups.includes(email)) {
+        if (status) {
+          status.textContent = "You're already on the watch list.";
+          status.classList.add('success');
+        }
+        return;
+      }
+      signups.push(email);
+      localStorage.setItem('lunar-drift-signups', JSON.stringify(signups));
+
+      emailInput.value = '';
+      btn.textContent = '✓ Joined';
+      btn.disabled = true;
+      if (status) {
+        status.textContent = "You're in. We'll reach out at the next perigee.";
+        status.classList.add('success');
       }
     });
   }

@@ -1010,6 +1010,81 @@ h2 {
   font-weight: 500;
 }
 
+.cta-signup {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.cta-signup-hook {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+
+.cta-form {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.cta-form input[type="email"] {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cta-form input[type="email"]:focus {
+  border-color: var(--accent);
+}
+
+.cta-form input[type="email"]::placeholder {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
+#signup-btn {
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+#signup-btn:hover {
+  background: #ff8a8a;
+  transform: translateY(-1px);
+}
+
+.cta-signup-note {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-top: 1rem;
+  opacity: 0.7;
+}
+
+.cta-signup-note.success {
+  color: var(--approaching);
+  opacity: 1;
+  font-size: 0.9rem;
+}
+
 /* ============================================
    Facts
    ============================================ */
