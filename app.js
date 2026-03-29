@@ -27,7 +27,7 @@
     // Cache elements
     const ids = [
       'counter', 'status', 'rate', 'chart', 'tooltip',
-      'nm-counter', 'nm-counter-2', 'atoms-counter',
+      'nm-counter', 
       'fact', 'share-btn', 'stars', 'timeline-distance'
     ];
     ids.forEach(id => {
@@ -120,12 +120,8 @@
     if (elements['nm-counter']) {
       elements['nm-counter'].textContent = nm.toFixed(2);
     }
-    if (elements['nm-counter-2']) {
-      elements['nm-counter-2'].textContent = nm.toFixed(2);
-    }
-    if (elements['atoms-counter']) {
-      elements['atoms-counter'].textContent = atoms.toLocaleString();
-    }
+
+
   }
 
   // ============================================

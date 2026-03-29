@@ -8,6 +8,12 @@
   <meta property="og:title" content="The Moon Is Leaving Earth">
   <meta property="og:description" content="3.8 cm per year. Every year, farther. Every century, our days grow longer. Our axis grows unstable. Watch it happen.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://moon.openterminaldevelopment.com/images/hero-moon.jpg">
+  <meta property="og:url" content="https://moon.openterminaldevelopment.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Moon Is Leaving Earth">
+  <meta name="twitter:description" content="3.8 cm per year. Every year, farther. Watch it happen in real-time.">
+  <meta name="twitter:image" content="https://moon.openterminaldevelopment.com/images/hero-moon.jpg">
   <meta name="theme-color" content="#08080f">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -89,6 +95,7 @@
 
     <!-- Current Distance -->
     <section id="distance" class="reveal">
+      <h2 class="distance-heading">Right Now</h2>
       <p class="status" id="status">—</p>
       <h2 class="counter" id="counter">—</h2>
       <p class="rate" id="rate">&nbsp;</p>
@@ -238,6 +245,20 @@
         <div class="timeline-item now">
           <div class="timeline-marker pulse"></div>
           <div class="timeline-content">
+        <div class="timeline-item past">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">4,500 years ago</span>
+            <p>The Great Pyramids are built. The Moon was <strong>17 cm closer</strong> — less than a handspan. Civilizations rise and fall. The drift continues.</p>
+          </div>
+        </div>
+        <div class="timeline-item past">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">66 million years ago</span>
+            <p>An asteroid kills the dinosaurs. The Moon was <strong>2.5 km closer</strong>. The tides were slightly stronger. The world recovered. The Moon kept leaving.</p>
+          </div>
+        </div>
             <span class="timeline-date">Now</span>
             <p><strong id="timeline-distance">384,400 km</strong> away. 24-hour days. Leap seconds failing. Coral spawning destabilizing. You are here, watching it leave.</p>
           </div>
@@ -273,15 +294,6 @@
       <div class="chart-wrap">
         <canvas id="chart"></canvas>
         <div id="tooltip" class="tooltip"></div>
-      </div>
-    </section>
-
-    <!-- The Counter (Persistent) -->
-    <section id="persistent-counter" class="reveal">
-      <div class="persistent-box">
-        <p class="persistent-label">Distance traveled since you started reading</p>
-        <p class="persistent-value"><span id="nm-counter-2">0.00</span> <span class="nm-unit">nanometers</span></p>
-        <p class="persistent-note">That's <span id="atoms-counter">0</span> silicon atoms. Gone forever.</p>
       </div>
     </section>
 
@@ -335,6 +347,7 @@
 
     <!-- Facts -->
     <section id="facts" class="reveal">
+      <h2 class="facts-heading">Did You Know?</h2>
       <p id="fact" class="fact-text">&nbsp;</p>
     </section>
 

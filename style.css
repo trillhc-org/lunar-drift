@@ -393,6 +393,15 @@ h2 {
   text-align: center;
 }
 
+.distance-heading {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
 .status {
   font-size: clamp(1rem, 3vw, 1.5rem);
   text-transform: uppercase;
@@ -882,53 +891,6 @@ h2 {
 }
 
 /* ============================================
-   Persistent Counter
-   ============================================ */
-
-#persistent-counter {
-  padding: 4rem 2rem;
-}
-
-.persistent-box {
-  background: linear-gradient(135deg, var(--bg-danger) 0%, var(--bg-card) 100%);
-  border: 1px solid var(--danger);
-  border-radius: 16px;
-  padding: 3rem;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-  box-shadow: 0 0 60px rgba(255, 107, 107, 0.1);
-}
-
-.persistent-label {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  margin-bottom: 1rem;
-}
-
-.persistent-value {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(2rem, 6vw, 3rem);
-  color: var(--receding);
-  margin-bottom: 1rem;
-}
-
-.nm-unit {
-  font-size: 0.5em;
-  color: var(--text-dim);
-}
-
-.persistent-note {
-  font-size: 0.9rem;
-  color: var(--text-dim);
-}
-
-#atoms-counter {
-  color: var(--text);
-  font-family: 'Space Mono', monospace;
-}
-
-/* ============================================
    What You Can Do
    ============================================ */
 
@@ -1149,6 +1111,15 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.facts-heading {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 .fact-text {
