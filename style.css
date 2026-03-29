@@ -233,6 +233,158 @@ h2 {
 }
 
 /* ============================================
+   Lifetime Calculator
+   ============================================ */
+
+#lifetime {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.lifetime-calc {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.lifetime-input-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lifetime-input-wrap label {
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.lifetime-input-wrap input {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.5rem;
+  color: var(--text);
+  text-align: center;
+  width: 160px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.lifetime-input-wrap input:focus {
+  border-color: var(--accent);
+}
+
+.lifetime-input-wrap input::placeholder {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
+#calc-btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#calc-btn:hover {
+  background: #9aa4ff;
+  transform: translateY(-1px);
+}
+
+.lifetime-result {
+  margin-top: 2rem;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lifetime-result.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.lifetime-result.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lifetime-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lifetime-stat {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.lifetime-stat:last-child {
+  border-color: var(--danger);
+  background: linear-gradient(135deg, var(--bg-danger) 0%, var(--bg-card) 100%);
+}
+
+.lifetime-stat-number {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.lifetime-stat:last-child .lifetime-stat-number {
+  color: var(--danger);
+}
+
+.lifetime-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+.lifetime-context {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.share-stat-btn {
+  background: var(--bg-card);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.share-stat-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+@media (max-width: 768px) {
+  .lifetime-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
    Distance Section
    ============================================ */
 

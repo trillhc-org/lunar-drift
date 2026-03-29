@@ -57,6 +57,32 @@
       <p class="compound-context">The Moon was once close enough to fill the sky. Every year, we lose a little more.</p>
     </section>
 
+    <!-- Lifetime Calculator -->
+    <section id="lifetime" class="reveal">
+      <h2>How Far Has It Moved In Your Lifetime?</h2>
+      <div class="lifetime-calc">
+        <div class="lifetime-input-wrap">
+          <label for="birth-year">Enter your birth year</label>
+          <input type="number" id="birth-year" min="1900" max="2026" placeholder="1990" inputmode="numeric">
+          <button id="calc-btn">Calculate</button>
+        </div>
+        <div id="lifetime-result" class="lifetime-result hidden">
+          <div class="lifetime-stat-grid">
+            <div class="lifetime-stat">
+              <span class="lifetime-stat-number" id="life-distance">—</span>
+              <span class="lifetime-stat-label">moved since you were born</span>
+            </div>
+            <div class="lifetime-stat">
+              <span class="lifetime-stat-number" id="life-projection">—</span>
+              <span class="lifetime-stat-label">by the time you turn 80</span>
+            </div>
+          </div>
+          <p class="lifetime-context" id="life-context"></p>
+          <button id="share-lifetime" class="share-stat-btn">Share your result 🌙</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Current Distance -->
     <section id="distance" class="reveal">
       <p class="status" id="status">—</p>

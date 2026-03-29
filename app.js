@@ -38,6 +38,7 @@
     initChart();
     initRevealAnimations();
     initShareButton();
+    initLifetimeCalc();
 
     updateMoonData();
     generateChartData();
@@ -388,6 +389,89 @@
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  // ============================================
+  // Lifetime Calculator
+  // ============================================
+
+  function initLifetimeCalc() {
+    const input = document.getElementById('birth-year');
+    const btn = document.getElementById('calc-btn');
+    const result = document.getElementById('lifetime-result');
+    if (!input || !btn || !result) return;
+
+    function calculate() {
+      const year = parseInt(input.value, 10);
+      if (!year || year < 1900 || year > new Date().getFullYear()) return;
+
+      const now = new Date();
+      const age = now.getFullYear() - year;
+      const yearsLived = Math.max(0, age);
+      const yearsTo80 = Math.max(0, 80 - age);
+
+      // 3.8 cm/year drift
+      const cmSinceBirth = yearsLived * LUNAR_DRIFT_CM_PER_YEAR;
+      const cmBy80 = 80 * LUNAR_DRIFT_CM_PER_YEAR; // total over 80 years from birth
+
+      const distEl = document.getElementById('life-distance');
+      const projEl = document.getElementById('life-projection');
+      const ctxEl = document.getElementById('life-context');
+
+      if (distEl) distEl.textContent = formatCmHuman(cmSinceBirth);
+      if (projEl) projEl.textContent = formatCmHuman(cmBy80);
+
+      // Relatable comparison
+      const comparisons = [];
+      if (cmSinceBirth >= 100) {
+        comparisons.push(`${(cmSinceBirth / 100).toFixed(1)} meters — taller than ${cmSinceBirth >= 180 ? 'you are' : 'a child'}`);
+      } else if (cmSinceBirth >= 30) {
+        comparisons.push(`about the length of your arm`);
+      } else if (cmSinceBirth >= 15) {
+        comparisons.push(`roughly the length of your forearm`);
+      } else {
+        comparisons.push(`about the width of your hand`);
+      }
+
+      if (ctxEl) {
+        ctxEl.innerHTML = `That's ${comparisons[0]}. Doesn't sound like much — but it never stops, and it <em>never</em> comes back.`;
+      }
+
+      result.classList.remove('hidden');
+      result.classList.add('visible');
+    }
+
+    btn.addEventListener('click', calculate);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') calculate();
+    });
+
+    // Share lifetime result
+    const shareBtn = document.getElementById('share-lifetime');
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        const year = parseInt(input.value, 10);
+        if (!year) return;
+        const age = new Date().getFullYear() - year;
+        const cm = age * LUNAR_DRIFT_CM_PER_YEAR;
+        const text = `Since I was born in ${year}, the Moon has drifted ${formatCmHuman(cm)} farther from Earth. It will never come back.`;
+        const url = window.location.href;
+
+        if (navigator.share) {
+          try { await navigator.share({ text, url }); } catch(e) {}
+        } else {
+          await navigator.clipboard.writeText(text + ' ' + url);
+          const orig = shareBtn.textContent;
+          shareBtn.textContent = 'Copied!';
+          setTimeout(() => shareBtn.textContent = orig, 2000);
+        }
+      });
+    }
+  }
+
+  function formatCmHuman(cm) {
+    if (cm >= 100) return (cm / 100).toFixed(1) + ' meters';
+    return cm.toFixed(1) + ' cm';
   }
 
   // ============================================
