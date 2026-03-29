@@ -41,6 +41,7 @@
     initLifetimeCalc();
     initActionShare();
     initSignup();
+    initStatSharing();
 
     updateMoonData();
     generateChartData();
@@ -559,6 +560,35 @@
         btn.textContent = 'Copied!';
         setTimeout(() => btn.textContent = orig, 2000);
       }
+    });
+  }
+
+  // ============================================
+  // Shareable Stat Cards
+  // ============================================
+
+  function initStatSharing() {
+    document.querySelectorAll('.stat-share-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const card = btn.closest('.shareable-stat');
+        if (!card) return;
+
+        const text = card.dataset.shareText;
+        const url = window.location.href;
+
+        if (navigator.share) {
+          try { await navigator.share({ text, url }); } catch(e) {}
+        } else {
+          await navigator.clipboard.writeText(text + ' ' + url);
+          btn.classList.add('copied');
+          btn.textContent = '✓';
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.textContent = '↗';
+          }, 2000);
+        }
+      });
     });
   }
 

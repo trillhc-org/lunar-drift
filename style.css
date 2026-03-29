@@ -509,6 +509,59 @@ h2 {
 }
 
 /* ============================================
+   Shareable Stats
+   ============================================ */
+
+.shareable-stat {
+  position: relative;
+}
+
+.stat-share-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-dim);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.shareable-stat:hover .stat-share-btn {
+  opacity: 1;
+}
+
+.stat-share-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.stat-share-btn.copied {
+  background: var(--approaching);
+  color: var(--bg);
+  border-color: var(--approaching);
+  opacity: 1;
+}
+
+/* Mobile: always show share buttons */
+@media (max-width: 768px) {
+  .stat-share-btn {
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
    Expert Quotes & Authority
    ============================================ */
 
