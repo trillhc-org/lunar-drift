@@ -509,6 +509,52 @@ h2 {
 }
 
 /* ============================================
+   Expert Quotes & Authority
+   ============================================ */
+
+.expert-quote {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--accent);
+  background: rgba(124, 138, 255, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+.expert-quote p {
+  font-size: 0.95rem;
+  color: var(--text) !important;
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.expert-quote cite {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-style: normal;
+  display: block;
+}
+
+.authority-logos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.authority-badge {
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
    Already Happening
    ============================================ */
 
